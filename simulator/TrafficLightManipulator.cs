@@ -6,15 +6,30 @@ namespace Assets
 {
     public class TrafficLightManipulator
     {
+        /// <summary>
+        /// Colour code for red lights
+        /// </summary>
         public const string RED = "RED";
+        /// <summary>
+        /// Colour code for orange lights
+        /// </summary>
         public const string ORANGE = "ORANGE";
+        /// <summary>
+        /// Colour code for orange lights to ensure the same code is used consistency.
+        /// </summary>
         public const string YELLOW = ORANGE;
+        /// <summary>
+        /// Colour code for green lights
+        /// </summary>
         public const string GREEN = "GREEN";
 
         public static Color BusRedColor = new Color(255, 0, 0);
         public static Color BusOrangeColor = new Color(255, 150, 0);
         public static Color BusGreenColor = new Color(0, 255, 0);
 
+        /// <summary>
+        /// List of all traffic light applying to cars.
+        /// </summary>
         public static readonly string[] CarLights =
         {
             "A1",
@@ -29,6 +44,9 @@ namespace Assets
             "A10"
         };
 
+        /// <summary>
+        /// List of all traffic light applying to cyclists.
+        /// </summary>
         public static readonly string[] CyclistLights =
         {
             "B1",
@@ -36,6 +54,9 @@ namespace Assets
             "B3"
         };
 
+        /// <summary>
+        /// List of all traffic light applying to pedestrians.
+        /// </summary>
         public static readonly string[] PedestrianLights =
         {
             "C1.1",
@@ -46,6 +67,9 @@ namespace Assets
             "C3.2",
         };
 
+        /// <summary>
+        /// List of all traffic lights.
+        /// </summary>
         public static readonly IEnumerable<string> AllTrafficLights = CarLights.Concat(CyclistLights).Concat(PedestrianLights);
 
         /// <summary>
@@ -53,6 +77,9 @@ namespace Assets
         /// </summary>
         private readonly Dictionary<string, GameObject[]> TrafficLightReferences;
 
+        /// <summary>
+        /// List of all queued traffic light changes.
+        /// </summary>
         private readonly Queue<KeyValuePair<string, string>> ChangeQueue;
 
         public TrafficLightManipulator()
@@ -96,6 +123,11 @@ namespace Assets
             busLight.enabled = true;
         }
 
+        /// <summary>
+        /// Update a light with the new color
+        /// </summary>
+        /// <param name="light">Light to update</param>
+        /// <param name="color">Color to use</param>
         private void UpdateLight(string light, string color)
         {
             IEnumerable<string> colors = new[] {GREEN, ORANGE, RED};
@@ -137,8 +169,8 @@ namespace Assets
         /// <summary>
         /// Queue a new change.
         /// </summary>
-        /// <param name="light"></param>
-        /// <param name="status"></param>
+        /// <param name="light">Light to queue a new status for</param>
+        /// <param name="status">New status (color)</param>
         public void Queue(string light, string status)
         {
             light = (light ?? "").ToUpper();
@@ -158,6 +190,10 @@ namespace Assets
             }
         }
 
+        /// <summary>
+        /// Update the Train light.
+        /// </summary>
+        /// <param name="color">New color</param>
         private void HandleTrainLights(string color)
         {
             switch (color)
@@ -173,6 +209,10 @@ namespace Assets
             }
         }
 
+        /// <summary>
+        /// Update the bus light.
+        /// </summary>
+        /// <param name="color">New color</param>
         private void HandleBusLight(string color)
         {
             GameObject busLight = TrafficLightReferences["D1"][0];

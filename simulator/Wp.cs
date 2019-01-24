@@ -1,6 +1,9 @@
 ﻿// ReSharper disable InconsistentNaming
 namespace Assets
 {
+    /// <summary>
+    /// Enum with all waypoints on the junction.
+    /// </summary>
     public enum Wp
     {
         // car waypoints

@@ -1,5 +1,8 @@
 ﻿namespace Assets
 {
+    /// <summary>
+    /// Enum with all types of traffic participants.
+    /// </summary>
     public enum Agent
     {
         Car,
@@ -15,4 +18,3 @@
         Test
     }
 }
-

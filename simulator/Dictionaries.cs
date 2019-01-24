@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Assets
 {
+    /// <summary>
+    /// Class with collections of waypoint traffic light association.
+    /// </summary>
     public static class Dictionaries
     {
         /// <summary>
@@ -26,26 +28,6 @@ namespace Assets
         };
 
         /// <summary>
-        /// dictionary that links pressure plates with the waypoints for cars
-        /// key = waypoint code
-        /// value =  traffic light code
-        /// </summary>
-        public static readonly Dictionary<Wp, string> CarTriggerpoints = new Dictionary<Wp, string>
-        {
-            { Wp.A1, "A1" },
-            { Wp.A7, "A2" },
-            { Wp.A14, "A3" },
-            { Wp.A21, "A3" },
-            { Wp.A27, "A4" },
-            { Wp.A33, "A5" },
-            { Wp.A37, "A6" },
-            { Wp.A42, "A7" },
-            { Wp.A49, "A8" },
-            { Wp.A46, "A9" },
-            { Wp.A53, "A10" },
-        };
-
-        /// <summary>
         /// dictionary that links both traffic lights and trigger buttons with the waypoints for bicycles
         /// key = waypoint code
         /// value = traffic light code
@@ -53,18 +35,16 @@ namespace Assets
         public static readonly Dictionary<Wp, string> CycleWaitpoints = new Dictionary<Wp, string>
         {
             { Wp.B23a, "B1" },
-            //{ Wp.B23b, "B1" },
-            //{ Wp.B24a, "B1" },
+            { Wp.B23b, "B1" },
+            { Wp.B24a, "B1" },
             { Wp.B24b, "B1" },
             { Wp.B16, "B2" },
-            //{ Wp.B26, "B2" },
+            { Wp.B26, "B2" },
             { Wp.B3a, "B3" },
-            //{ Wp.B3b, "B3" },
-            //{ Wp.B4a, "B3" },
+            { Wp.B3b, "B3" },
+            { Wp.B4a, "B3" },
             { Wp.B4b, "B3" },
         };
-
-		public static readonly Dictionary<Wp, string> CycleTriggerpoints = CycleWaitpoints;
 
         /// <summary>
         /// dictionary that links both traffic lights and trigger buttons with the waypoints for pedestrians
@@ -87,8 +67,6 @@ namespace Assets
             { Wp.C28a, "C3.2" },
         };
 
-		public static readonly Dictionary<Wp, string> PedestrianTriggerpoints = PedestrianWaitpoints;
-
         /// <summary>
         /// dictionary that links traffic lights with the waypoints for buses
         /// key = waypoint code
@@ -98,13 +76,6 @@ namespace Assets
         {
             { Wp.D3, "D1" },
         };
-
-		public static readonly Dictionary<Wp, string> BusTriggerPoints = BusWaitpoints;
-
-        public static IEnumerable<KeyValuePair<Wp, string>> AllTriggerpoints
-        {
-            get { return CarTriggerpoints.Concat(CycleTriggerpoints.Concat(PedestrianTriggerpoints).Concat(BusTriggerPoints)); }
-        }
 
         /// <summary>
         /// dictionary that links train lights with the waypoints for all traffic users
@@ -125,6 +96,9 @@ namespace Assets
             { Wp.C20b, "E1" },
         };
 
+        /// <summary>
+        /// List of all traffic lights.
+        /// </summary>
         public static readonly List<string> Lights = new List<string>
         {
             "A1",

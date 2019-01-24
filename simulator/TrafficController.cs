@@ -17,13 +17,34 @@ namespace Assets
 	/// </summary>
 	public class TrafficController : MonoBehaviour
 	{
+		/// <summary>
+		/// Reference to the class that manages all traffic lights.
+		/// </summary>
 		private TrafficLightManipulator Manipulator;
+		/// <summary>
+		///
+		/// </summary>
 		private TrafficWaitStore WaitStore;
 		private WebSocket SocketClient;
+		/// <summary>
+		/// Timer for spawning a new train.
+		/// </summary>
 		private float trainCntr;
+		/// <summary>
+		/// Timer for random spawning. Used for testing without a controller.
+		/// </summary>
 		private float cntr;
+		/// <summary>
+		/// Maximum limit for spawning a train.
+		/// </summary>
 		private float TrainSpawnLimit = 45f;
+		/// <summary>
+		/// State of the train crossing.
+		/// </summary>
 		private bool trainOpen = true;
+		/// <summary>
+		/// State of the traffic light to be toggled during testing without a controller.
+		/// </summary>
 		private bool open = true;
 
 		// Use this for initialization
@@ -63,7 +84,7 @@ namespace Assets
 		}
 
 		/// <summary>
-		///
+		/// Event triggered when a new message arives from the controller.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>

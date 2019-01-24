@@ -12,22 +12,46 @@ namespace Assets
         private const float FanfareSpawnInterval = 2f;
         private const float BusSpawnInterval = 30f;
 
+        /// <summary>
+        /// Spawn timer.
+        /// </summary>
         private float timer;
+        /// <summary>
+        /// Spawn timer for buses.
+        /// </summary>
         private float busTimer;
+        /// <summary>
+        /// Spawn timer for the fanfare.
+        /// </summary>
         private float fanfareTimer;
+        /// <summary>
+        /// Check to prevent spawning a fanfare at the same time.
+        /// </summary>
         private bool fanfareIsActive;
+        /// <summary>
+        /// Index indicating which fanfare member is currently spawning.
+        /// </summary>
         private int fanfareIndex;
 
+        /// <summary>
+        /// Contains the route the current fanfare instance should take
+        /// </summary>
         private List<Wp> fanfareRoute = new List<Wp>();
+        /// <summary>
+        /// Starting point for the current fanfare instance.
+        /// </summary>
         private Wp fanfareStart = Wp.C18b;
 
+        /// <summary>
+        /// Regular traffic participant references to use as template
+        /// </summary>
         private GameObject traffic_object;
         private GameObject f150;
         private GameObject bicycle;
         private GameObject pedestrian;
         private GameObject bus;
 
-        // fanfare
+        // fanfare references ot use as template
         private GameObject vertical_drum;
         private GameObject trombone;
         private GameObject horn;
@@ -35,10 +59,19 @@ namespace Assets
         private GameObject pingping;
         private List<Agent> fanfare = new List<Agent>();
 
+        /// <summary>
+        /// List of spawn points for cars.
+        /// </summary>
         private readonly List<Wp> carSpawnPoints = new List<Wp> { Wp.A1, Wp.A7, Wp.A14, Wp.A21, Wp.A27, Wp.A33, Wp.A37, Wp.A42, Wp.A45, Wp.A52 };
 
+        /// <summary>
+        /// List of spawn points for cyclists.
+        /// </summary>
         private readonly List<Wp> cycleSpawnPoints = new List<Wp> { Wp.B1a, Wp.B17a, Wp.B13, Wp.B12a, Wp.B5b };
 
+        /// <summary>
+        /// List of spawn points for pedestrians.
+        /// </summary>
         private readonly List<Wp> pedestrianSpawnPoints = new List<Wp> { Wp.C1a, Wp.C7a, Wp.C10a, Wp.C17b, Wp.C18b, Wp.C25b, Wp.C32b, Wp.C30a };
 
         // for experimenting select routes
@@ -131,7 +164,10 @@ namespace Assets
             }
         }
 
-        // generate a route and create an instance of a given agent
+        /// <summary>
+        /// Creates a new traffic participant based on the given type on a random location with a random route.
+        /// </summary>
+        /// <param name="type"></param>
         private void RouteMultiplicator(Agent type)
         {
             Wp waypoint;

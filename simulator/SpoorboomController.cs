@@ -3,21 +3,63 @@ using UnityEngine;
 
 namespace Assets
 {
+	/// <summary>
+	/// Controls everything related to the train crossing.
+	/// </summary>
 	public class SpoorboomController : MonoBehaviour
 	{
+		/// <summary>
+		/// Direction the train is going to.
+		/// </summary>
 		private bool trainDirection;
+		/// <summary>
+		/// Reference to the train.
+		/// </summary>
 		private GameObject Train;
+		/// <summary>
+		/// Reference to all overpass beams.
+		/// </summary>
 		private GameObject[] Beams = new GameObject[0];
+		/// <summary>
+		/// Current angle of the beam.
+		/// </summary>
 		private float currentBeamAngle = 85f;
+		/// <summary>
+		/// Reference to all lights on the left.
+		/// </summary>
 		private GameObject[] lightsLeft = new GameObject[0];
+		/// <summary>
+		/// Reference to all lights on the right.
+		/// </summary>
 		private GameObject[] lightsRight = new GameObject[0];
+		/// <summary>
+		/// Reference to all noise boxes for toggling the audio.
+		/// </summary>
 		private GameObject[] bells = new GameObject[0];
+		/// <summary>
+		/// Timer for switching the light between blinking the left and right light.
+		/// </summary>
 		private float lightSwitchTimer;
+		/// <summary>
+		/// Current state of the overpass.
+		/// </summary>
 		public static TrainCrossState TrainCrossState { get; private set; }
+		/// <summary>
+		/// Speed of the train.
+		/// </summary>
 		private const float TrainSpeed = 12f;
+		/// <summary>
+		/// Time the lights take to switch between left and right.
+		/// </summary>
 		private const float LightSwitchTime = 0.35f;
+		/// <summary>
+		/// Speed the beams will go up or down.
+		/// </summary>
 		private const float BeamSpeed = 10f;
 
+		/// <summary>
+		/// Closes the train crossing, only when it is open.
+		/// </summary>
 		public static void CloseCrossing()
 		{
 			if (TrainCrossState == TrainCrossState.Open)
@@ -26,6 +68,9 @@ namespace Assets
 			}
 		}
 
+		/// <summary>
+		/// Opens the train crossing, only when it is closed.
+		/// </summary>
 		public static void OpenCrossing()
 		{
 			if (TrainCrossState == TrainCrossState.Closed)

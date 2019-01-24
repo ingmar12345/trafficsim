@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Controls the position and rotation of the camera.
+/// </summary>
 public class CameraController : MonoBehaviour
 {
 	private const float MovementSpeed = 5.0f;
 	private const float RotationSpeed = 20.0f;
-
-	// Use this for initialization
-	void Start()
-	{
-
-	}
 
 	// Update is called once per frame
 	void Update()

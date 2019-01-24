@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Waypoint_controller : MonoBehaviour
+public class Waypoint_controller
 {
+    /// <summary>
+    /// List of possible routes cars can take.
+    /// </summary>
     public static List<List<Wp>> carRoutes = new List<List<Wp>>
     {
         // North
@@ -35,6 +38,9 @@ public class Waypoint_controller : MonoBehaviour
         new List<Wp>{ Wp.A77, Wp.A46, Wp.A78, Wp.A47, Wp.A79, Wp.A48, Wp.A81, Wp.A17, Wp.A64, Wp.A18, Wp.A65, Wp.A19, Wp.A20, Wp.END },
     };
 
+    /// <summary>
+    /// List of possible routes cyclists can take.
+    /// </summary>
     public static List<List<Wp>> cycleRoutes = new List<List<Wp>>
     {
         // North
@@ -89,6 +95,9 @@ public class Waypoint_controller : MonoBehaviour
         new List<Wp>{ Wp.B7b, Wp.B4b, Wp.B3b, Wp.B2b }
     };
 
+    /// <summary>
+    /// Lists of routes the pedestrians can take.
+    /// </summary>
     public static List<List<Wp>> pedestrianRoutes = new List<List<Wp>>
     {
         // North
@@ -184,11 +193,20 @@ public class Waypoint_controller : MonoBehaviour
         new List<Wp>{ Wp.C29c, Wp.C30b, Wp.END },
     };
 
+    /// <summary>
+    /// Lists of routes busses can take.
+    /// </summary>
     public static List<List<Wp>> busRoutes = new List<List<Wp>>
     {
         new List<Wp> { Wp.D1, Wp.D2, Wp.D3, Wp.D4, Wp.A72, Wp.A4, Wp.A5, Wp.A58, Wp.A6 },
     };
 
+    /// <summary>
+    /// Builds a route based on the given start point.
+    /// </summary>
+    /// <param name="allRoutes">All routes for a certain traffic participant</param>
+    /// <param name="start">Starting point to calculate a route from</param>
+    /// <returns>A route using the given starting point</returns>
     public static List<Wp> RouteBuilder(List<List<Wp>> allRoutes, Wp start)
     {
         List<List<Wp>> possibleRoutes = allRoutes.Where(l => l.First() == start).ToList();
@@ -207,15 +225,10 @@ public class Waypoint_controller : MonoBehaviour
         }
 
         Wp last = route.Last();
+        // If the last part of the route is not the end point, find a route that starts at the end point, and glue them together.
         if (last != Wp.END)
         {
-            //bool isValid;
             List<Wp> extension = RouteBuilder(allRoutes, last);
-            //do
-            //{
-            //    extension = RouteBuilder(allRoutes, last);
-            //    isValid = extension[1] != route[route.Count - 2];
-            //} while (isValid);
 
             return route.Concat(extension).Distinct().ToList();
         }
@@ -224,17 +237,4 @@ public class Waypoint_controller : MonoBehaviour
             return route;
         }
     }
-
-
-
-
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
 }

@@ -8,6 +8,10 @@ using Random = UnityEngine.Random;
 
 namespace Assets
 {
+    /// <summary>
+    /// Various utility methods, that might be extension methods.
+    /// Some are here to reinvent the wheel due to Unity's outdated Mono version, other are to exploit Unity's custom classes.
+    /// </summary>
     public static class Utilities
     {
         /// <summary>
